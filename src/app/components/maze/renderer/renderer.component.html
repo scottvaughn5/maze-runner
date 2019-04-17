@@ -1,0 +1,12 @@
+
+<table id="container">
+  <tr class="row" *ngFor="let row of grid">
+    <td class="cell" 
+    *ngFor="let cell of row" id="{{cell.uid}}" 
+    [ngClass]="{ 'cell-visited' : cell.data.visited, 'cell-obstacle': cell.data.obstacle }"
+    (click)="toggleObstacle(this, cell)"
+    >
+    </td>
+  </tr>
+</table>
+

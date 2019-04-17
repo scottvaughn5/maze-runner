@@ -3,16 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RendererComponent } from './components/maze/renderer/renderer.component';
 
+import { MazeService } from './providers/maze-service.service'
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RendererComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [MazeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
