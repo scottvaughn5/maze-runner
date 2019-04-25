@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RendererComponent } from './components/maze/renderer/renderer.component';
 
-import { MazeService } from './providers/maze-service.service'
+import { MazeService } from './providers/maze-service.service';
+import { MazeSolutionService } from './providers/maze-solution.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +16,7 @@ import { MazeService } from './providers/maze-service.service'
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [MazeService],
+  providers: [MazeService, MazeSolutionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
