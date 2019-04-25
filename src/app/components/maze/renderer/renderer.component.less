@@ -34,5 +34,51 @@ td.cell-goal{
 .visible{
     display: none;
 }
+.center-radios{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.victory{
+    animation-name: pulse-victory;
+    animation-duration: 1s;
+    animation-iteration-count: 5; 
+}
+
+.defeat{
+    animation-name: pulse-defeat;
+    animation-duration: 1s;
+    animation-iteration-count: 5; 
+}
+
+@keyframes pulse-defeat{
+    0%{
+        background-color: red;
+    }
+    33%{
+        background-color: darkred;
+    }
+    66%{
+        background-color: rgb(97, 0, 0);
+    }
+    99%{
+        background-color: darkred;
+    }
+}
 
 
+@keyframes pulse-victory{
+    0%{
+        background-color: goldenrod;
+    }
+    33%{
+        background-color: gold;
+    }
+    66%{
+        background-color: white;
+    }
+    99%{
+        background-color: gold;
+    }
+}

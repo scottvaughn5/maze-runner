@@ -7,10 +7,11 @@ import { RendererComponent } from './components/maze/renderer/renderer.component
 
 import { MazeService } from './providers/maze-service.service';
 import { MazeSolutionService } from './providers/maze-solution.service';
+
 @NgModule({
   declarations: [
     AppComponent,
-    RendererComponent
+    RendererComponent,
   ],
   imports: [
     BrowserModule,

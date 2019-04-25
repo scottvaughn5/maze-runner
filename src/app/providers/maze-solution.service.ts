@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import MazeNode from 'src/app/models/MazeNode';
+import { MazeSuccessService } from './maze-success.service';
 
 
 @Injectable({
@@ -7,13 +8,15 @@ import MazeNode from 'src/app/models/MazeNode';
 })
 export class MazeSolutionService {
 
-  constructor() { }
+  constructor(private mazeSucessService: MazeSuccessService) { }
   private maze: any;
   private stack: any[] = [];
   private decisionSet: string[] = ['up', 'down', 'left', 'right'];
   private failed: boolean = false;
-  executeMaze(maze: any) {
+  private startIndex: number;
+  executeMaze(maze: any, startIndex) {
     this.maze = maze;
+    this.startIndex = startIndex;
     this.doSearch(this.pickStart());
   }
 
@@ -25,7 +28,7 @@ export class MazeSolutionService {
 
     // base case, end recursion
     if (cell.data.type === 'goal') {
-      alert('victory');
+      this.mazeSucessService.RunSequence(this.maze, 'victory');
       return true;
     } else {
       const nextCell = this.makeDecision(cell);
@@ -37,25 +40,24 @@ export class MazeSolutionService {
           return this.doSearch([nextCell.data.y, nextCell.data.x]);
         }, 500);
       } else {
-        alert('invalid maze');
+        this.mazeSucessService.RunSequence(this.maze, 'defeat');
       }
-
     }
   }
 
+
   private makeDecision(currentCell: MazeNode) {
-    var direction = this.decisionSet.find((dir) => this.isSuitableCell(currentCell, dir, (cell) => cell.data.type !== 'visited' && cell.data.type !== 'obstacle'));
+    const direction = this.decisionSet.find((dir) => this.isSuitableCell(currentCell, dir, this.checkSuitable));
     const nextCell = this.getCellInDirection(currentCell.data.x, currentCell.data.y, direction);
     if (!direction || typeof nextCell === 'undefined') {
       if (this.stack.length === 0) {
         this.failed = true;
       }
-      console.log(this.stack.length);
       return this.stack.pop();
     } else {
       currentCell.data.type = 'visited';
+      this.stack.push(currentCell);
       // if the next cell is undefined then that means we need to pop back
-      this.stack.push(nextCell);
       return nextCell;
     }
   }
@@ -96,8 +98,11 @@ export class MazeSolutionService {
     const lengthX = this.maze[0].length - 1;
     const lengthY = this.maze.length - 1;
     const fourCorners = [[0, 0], [lengthX, 0], [0, lengthY], [lengthX, lengthY]];
-    // return fourCorners[Math.floor(Math.random() * 4)];
-    return fourCorners[3];
+    return fourCorners[this.startIndex];
+  }
+
+  private checkSuitable(cell) {
+    return cell.data.type !== 'visited' && cell.data.type !== 'obstacle';
   }
 
 }

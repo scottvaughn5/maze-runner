@@ -1,23 +1,22 @@
-
-
+<div class="center-radios">
+  <input type="radio" checked="checked" name="start" value="0" (click)="doRadioSelect($event)" />
+  <input type="radio" name="start" value="1" (click)="doRadioSelect($event)" />
+  <input type="radio" name="start" value="2" (click)="doRadioSelect($event)" />
+  <input type="radio" name="start" value="3" (click)="doRadioSelect($event)" />
+</div>
 <table id="container">
   <tr class="row" *ngFor="let row of grid">
-    <td class="cell" 
-    *ngFor="let cell of row" id="{{cell.uid}}" 
-    [ngClass]="{ 
+    <td class="cell" *ngFor="let cell of row" id="{{cell.uid}}" [ngClass]="{ 
       'cell-visited' : cell.data.visited, 
       'cell-obstacle': cell.data.type === 'obstacle', 
       'cell-goal' : cell.data.type === 'goal',
-      'cell-visiting' : cell.data.type === 'visiting'  
-    }"
-    (click)="toggleObstacle(cell)"
-    (dblclick)="toggleGoal(cell)"
-    >
+      'cell-visiting' : cell.data.type === 'visiting',
+      'victory' : cell.data.type === 'victory',
+      'defeat' : cell.data.type === 'defeat' }" 
+      (click)="toggleObstacle(cell)" (dblclick)="toggleGoal(cell)">
     </td>
   </tr>
 </table>
 <div class='button-row'>
-  <button [ngClass]="{ 'visible' : !startable }" [disabled]='isProcessing' (click)="doSolveMaze(grid)"> Start </button>
+  <button [ngClass]="{ 'visible' : !startable && !isProcessing }"(click)="doSolveMaze(grid, startIndex)"> Start </button>
 </div>
-
-
