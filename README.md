@@ -1,5 +1,11 @@
 # MazeRunner
 
+Project is considered completed as it does what I intended from the start.
+The last items to do include
+  1) Add Reset Feature
+  2) Style buttons
+  3) Style radio buttons
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
 ## Development server
