@@ -1,6 +1,10 @@
 # MazeRunner
 
-Did this project to play with angular and an old college problem. Had fun putting it together and trying out new tools.
+This is an old project I used to play around and start learning Angular. I wanted to make a game that looked like it was
+"alive" so I did a simple search algorithm where you can draw bariers and a goal and the program will solve it. I had a lot
+of fun working on this one.
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
